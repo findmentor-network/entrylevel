@@ -1,21 +1,23 @@
 <template>
   <div class="container">
-    <h1>Selam</h1>
-    <button v-bind="createUser()">Submit</button>
+    <form id="app" method="post">
+      <input placeholder="test@gmail.com" />
+      <input v-bind="sendEmail()" type="submit" value="Send" />
+    </form>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    async createUser() {
+    async sendEmail() {
       try {
         await this.$fire.auth.createUserWithEmailAndPassword(
-          'foo@foo.foo',
-          'test'
+          'selcuktatar@findmentor.network',
+          'test12adssa31231231'
         )
-      } catch {
-        return console.log('error: Here!')
+      } catch (e) {
+        return Promise.reject(e)
       }
     },
   },

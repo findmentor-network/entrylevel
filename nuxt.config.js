@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -14,7 +15,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/firebase.js', '~/plugins/fireauth.js'],
+  plugins: [],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -27,6 +28,22 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.API_KEY,
+          authDomain: process.env.AUTH_DOMAIN,
+          projectId: process.env.PROJECT_ID,
+          storageBucket: process.env.STORAGE_BUCKET,
+          messagingSenderId: process.env.MESSAGING_SENDER_ID,
+          appId: process.env.APP_ID,
+        },
+        services: {
+          auth: true, // Just as example. Can be any other service.
+        },
+      },
+    ],
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
